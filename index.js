@@ -9,17 +9,17 @@ app.use(bodyParser.json());
 // Определяем обработчик корневого урла с методом POST
 app.post("/", function(request, response) {
     const { firstArg, secondArg, operation } = request.body; // деструктуризация
-    if (operation === '+') {
-        response.status(200).json(firstArg + secondArg);
-    } else if (operation === '-') {
-        response.status(200).json(firstArg - secondArg);
-    } else if (operation === '/') {
-        response.status(200).json(firstArg / secondArg);
-    } else if (operation === '*') {
-        response.status(200).json(firstArg * secondArg);
-    }
-    else {
-    	response.send("<h2>Привет Express!</h2>");
+    switch(operation)
+    {
+        case '+': response.status(200).json(firstArg + secondArg); break;
+        case '-': response.status(200).json(firstArg - secondArg); break;
+        case '/': { 
+            if(secondArg==0) response.status(400).json('Второй аргумент равен 0');
+            else response.status(200).json(firstArg / secondArg); 
+            break; }
+        case '*': response.status(200).json(firstArg * secondArg); break;
+        case '^': response.status(200).json(Math.pow(firstArg,secondArg)); break;
+        default: response.status(400).json('Ошибка'); break;
     }
 });
 // начинаем прослушивать подключения на 3000 порту
