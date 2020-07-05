@@ -22,13 +22,19 @@ const percent = (basis, percent) => {
     }
 };
 
+const min = (first,second) => Math.min(first,second);
+
+const max = (first,second) => Math.max(first,second);
+
 const twoArgsOperations = {
     "+": addition,
     "-": subtraction,
     "*": multiplication,
     "/": division,
-    "**": exponentiation,
-    "%": percent
+    "^": exponentiation,
+    "%": percent,
+    "min": min,
+    "max": max
 }
 
 const getTwoArgsOperation = (selector) => {
