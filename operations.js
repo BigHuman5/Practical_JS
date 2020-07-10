@@ -39,7 +39,7 @@ const sqrt = (first) => {
 		return Math.sqrt(first);
 	}
 	else {
-		throw new Error('first can\'t be negative');
+		throw new Error('Argument can\'t be negative');
 	}
 };
 

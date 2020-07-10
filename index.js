@@ -27,8 +27,10 @@ app.post("/two-args", function(request, response) {
 app.post("/one-arg", function(request, response) {
     const { firstArg, operation } = request.body;
     var firstArgum=Number(firstArg);
-        if(!isFinite(firstArgum)) response.status(400).json("Ошибка в числе."); // Проверка на ошибку ввод слов вместо чисел
+        if(!isFinite(firstArgum)) {
+        response.status(400).json("Ошибка в числе."); // Проверка на ошибку ввод слов вместо чисел
         // Без ! перед isFinite не работает
+    }
     else {
         try {
         response

@@ -172,6 +172,40 @@ describe('Two args', () => {
                 expect(response.body).toBe("Ошибка в числах.");
             });
     })
+
+    it('Percent negative', () => {
+        return request
+            .post('/two-args')
+            .send(
+                {
+                    firstArg: "100",
+                    secondArg: -10,
+                    operation: "%"
+                }
+            )
+            .expect('Content-type', /json/)
+            .expect(400)
+            .then(response => {
+                expect(response.body).toBe('Percent can\'t be negative');
+            });
+    })
+
+    it('Devider zero', () => {
+        return request
+            .post('/two-args')
+            .send(
+                {
+                    firstArg: "100",
+                    secondArg: 0,
+                    operation: "/"
+                }
+            )
+            .expect('Content-type', /json/)
+            .expect(400)
+            .then(response => {
+                expect(response.body).toBe('Divider can\'t be zero');
+            });
+    })
 });
 
 //
@@ -240,6 +274,24 @@ describe('One arg', () => {
                 expect(response.body).toBe(10);
             });
     })
+
+    it('Sqrt negative', () => {
+        return request
+            .post('/one-arg')
+            .send(
+                {
+                    firstArg: -100,
+                    operation: "sqrt"
+                }
+            )
+            .expect('Content-type', /json/)
+            .expect(400)
+            .then(response => {
+                expect(response.body).toBe('Argument can\'t be negative');
+            });
+    })
+    
+
 
     it('Not implemented', () => {
         return request

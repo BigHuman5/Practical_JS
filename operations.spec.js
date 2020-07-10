@@ -52,9 +52,6 @@ describe("Two arguments operation", () => {
         expect(getTwoArgsOperation("/")(6, 3)).toBe(2);
     });
 
-/*    it("division", () => {
-        expect(getTwoArgsOperation("/")(6, 0)).toBe('Divider can\'t be zero');
-    });*/
 
     it("exponentiation", () => {
         expect(getTwoArgsOperation("^")(2, 3)).toBe(8);
@@ -64,9 +61,6 @@ describe("Two arguments operation", () => {
         expect(getTwoArgsOperation("%")(10, 50)).toBe(5);
     });
 
-    /*it("percent", () => {
-        expect(getTwoArgsOperation("%")(10, -50)).toBe('Percent can\'t be negative');
-    });*/
 
     it("max", () => {
         expect(getTwoArgsOperation("max")(10, 50)).toBe(50);
@@ -114,8 +108,5 @@ describe("One argument operation", () => {
         expect(getOneArgOperation("sqrt")(25)).toBe(5);
     });
 
-    /*it("sqrt", () => {
-        expect(getOneArgOperation("sqrt")(-25)).toBe('first can\'t be negative');
-    });*/
 
 });
