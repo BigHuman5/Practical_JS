@@ -25,6 +25,23 @@ const percent = (basis, percent) => {
 const min = (first,second) => Math.min(first,second);
 
 const max = (first,second) => Math.max(first,second);
+//
+// 1 arg. All in gradus
+//
+const sin = (first) => Math.sin(first*Math.PI/180);
+
+const cos = (first) => Math.cos(first*Math.PI/180);
+
+const tan = (first) => Math.tan(first*Math.PI/180);
+
+const sqrt = (first) => {
+	if(first >= 0){
+		return Math.sqrt(first);
+	}
+	else {
+		throw new Error('first can\'t be negative');
+	}
+};
 
 const twoArgsOperations = {
     "+": addition,
@@ -37,9 +54,21 @@ const twoArgsOperations = {
     "max": max
 }
 
+const oneArgOperations = {
+    "sin": sin,
+    "cos": cos,
+    "tan": tan,
+    "sqrt": sqrt
+}
+
 const getTwoArgsOperation = (selector) => {
     const operation = twoArgsOperations[selector];
     return operation !== undefined ? operation : () => { throw Error("Operation not implemented") };
 }
 
-module.exports = { getTwoArgsOperation };
+
+const getOneArgOperation = (selector) => {
+    const operation = oneArgOperations[selector];
+    return operation !== undefined ? operation : () => { throw Error("Operation not implemented") };
+}
+module.exports = { getOneArgOperation, getTwoArgsOperation };
